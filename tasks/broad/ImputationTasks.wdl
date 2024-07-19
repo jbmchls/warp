@@ -493,6 +493,7 @@ task UpdateHeader {
     File vcf_index
     File ref_dict
     String basename
+    Array[String]? intervals_to_include
 
     Int disk_size_gb = ceil(4*(size(vcf, "GiB") + size(vcf_index, "GiB"))) + 20
     String gatk_docker = "us.gcr.io/broad-gatk/gatk:4.5.0.0"
@@ -509,8 +510,10 @@ task UpdateHeader {
     UpdateVCFSequenceDictionary \
     --source-dictionary ~{ref_dict} \
     --output ~{basename}.vcf.gz \
-    --replace -V ~{vcf} \
-    --disable-sequence-dictionary-validation
+    --replace=true \
+    -V ~{vcf} \
+    --disable-sequence-dictionary-validation \ 
+    ~{"-L " + intervals_to_include}
   >>>
   runtime {
     docker: gatk_docker

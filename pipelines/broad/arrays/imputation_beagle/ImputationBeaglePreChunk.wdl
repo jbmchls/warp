@@ -146,6 +146,7 @@ workflow ImputationBeagle {
                     vcf = PhaseAndImputeBeagle.vcf,
                     vcf_index = PhaseAndImputeBeagle.vcf_index,
                     ref_dict = ref_dict,
+                    intervals_to_include = contigs,
                     basename = chunk_basename + "_imputed",
                     gatk_docker = gatk_docker
             }
