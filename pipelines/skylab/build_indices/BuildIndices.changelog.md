@@ -1,4 +1,9 @@
 # 3.0.0
+2024-10-21 (Date of Last Commit)
+
+* Updated modify-gtf script to handle empty gene_name attribute by assigning gene_id value to it
+
+# 3.0.0
 2023-12-06 (Date of Last Commit)
 
 * Updated BuildIndices to use bwa-mem2

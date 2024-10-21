@@ -16,7 +16,7 @@ workflow BuildIndices {
   }
 
   # version of this pipeline
-  String pipeline_version = "3.0.0"
+  String pipeline_version = "3.1.0"
 
 
   parameter_meta {
@@ -143,7 +143,7 @@ task BuildStarSingleNucleus {
   }
 
   runtime {
-    docker: "us.gcr.io/broad-gotc-prod/build-indices:2.0.0"
+    docker: "us.gcr.io/broad-gotc-prod/build-indices:1.0.0-2.7.10a-1729541193"
     memory: "50 GiB"
     disks: "local-disk ${disk} HDD"
     disk: disk + " GB" # TES
