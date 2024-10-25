@@ -12,7 +12,6 @@ workflow BuildIndices {
 
     File annotations_gtf
     File genome_fa
-    String species
   }
 
   # version of this pipeline
@@ -22,7 +21,6 @@ workflow BuildIndices {
   parameter_meta {
     annotations_gtf: "the annotation file"
     genome_fa: "the fasta file"
-    species: Species
   }
 
     call BuildStarSingleNucleus {
@@ -30,7 +28,6 @@ workflow BuildIndices {
         gtf_annotation_version = gtf_annotation_version,
         genome_fa = genome_fa,
         annotation_gtf = annotations_gtf,
-        species = species,
         genome_build = genome_build,
         genome_source = genome_source,
         organism = organism
@@ -90,7 +87,6 @@ task BuildStarSingleNucleus {
     String organism
     File genome_fa
     File annotation_gtf
-    String species
     Int disk = 100
   }
   meta {
@@ -123,7 +119,7 @@ task BuildStarSingleNucleus {
     python3 /script/modify_gtf.py  \
     --input-gtf ~{annotation_gtf} \
     --output-gtf ~{annotation_gtf_modified} \
-    --species  ~{species}
+    --species  ~{organism}
 
     mkdir star
     STAR --runMode genomeGenerate \
