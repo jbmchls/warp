@@ -37,7 +37,7 @@ workflows:
 
   - name: JointGenotyping
     subclass: WDL
-    primaryDescriptorPath: /pipelines/broad/dna_seq/germline/joint_genotyping/JointGenotyping.wdl
+    primaryDescriptorPath: /pipelines/broad/dna_seq/germline/joint_genotyping/JointGenotyping_smallBatch.wdl
 
   - name: ExomeGermlineSingleSample
     subclass: WDL
