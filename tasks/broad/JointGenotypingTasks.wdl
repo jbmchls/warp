@@ -89,6 +89,7 @@ task ImportGVCFs {
     File ref_dict
 
     String workspace_dir_name
+    String? gcs_project_for_requester_pays
 
     Int disk_size_gb
     Int machine_mem_mb = 30000
@@ -119,7 +120,8 @@ task ImportGVCFs {
       --sample-name-map ~{sample_name_map} \
       --reader-threads 5 \
       --merge-input-intervals \
-      --consolidate
+      --consolidate \
+      ~{if defined(gcs_project_for_requester_pays) then "--gcs-project-for-requester-pays ~{gcs_project_for_requester_pays}" else ""}
 
     tar -cf ~{workspace_dir_name}.tar ~{workspace_dir_name}
   >>>
