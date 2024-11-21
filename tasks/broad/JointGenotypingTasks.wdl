@@ -882,6 +882,7 @@ task CrossCheckFingerprint {
     Boolean scattered = false
     Array[String] expected_inconclusive_samples = []
     String gatk_docker = "us.gcr.io/broad-gatk/gatk:4.6.1.0"
+    String? gcs_project_for_requester_pays
     Int? machine_mem_mb
     Int disk = 100
   }
@@ -923,6 +924,7 @@ task CrossCheckFingerprint {
       --CROSSCHECK_MODE CHECK_SAME_SAMPLE \
       --NUM_THREADS ~{cpu} \
       ~{true='--EXIT_CODE_WHEN_MISMATCH 0' false='' scattered} \
+      ~{if defined(gcs_project_for_requester_pays) then "--gcs-project-for-requester-pays ~{gcs_project_for_requester_pays}" else ""} \
       --OUTPUT ~{output_name}
 
     if ~{scattered}; then
