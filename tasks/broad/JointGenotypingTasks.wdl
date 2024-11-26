@@ -923,7 +923,6 @@ task CrossCheckFingerprint {
       --CROSSCHECK_MODE CHECK_SAME_SAMPLE \
       --NUM_THREADS ~{cpu} \
       ~{true='--EXIT_CODE_WHEN_MISMATCH 0' false='' scattered} \
-      ~{if defined(gcs_project_for_requester_pays) then "--gcs-project-for-requester-pays ~{gcs_project_for_requester_pays}" else ""} \
       --OUTPUT ~{output_name}
 
     if ~{scattered}; then
