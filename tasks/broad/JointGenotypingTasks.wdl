@@ -882,17 +882,16 @@ task CrossCheckFingerprint {
     Boolean scattered = false
     Array[String] expected_inconclusive_samples = []
     String gatk_docker = "us.gcr.io/broad-gatk/gatk:4.6.1.0"
-    String? gcs_project_for_requester_pays
     Int? machine_mem_mb
     Int disk = 100
   }
 
   parameter_meta {
     gvcf_paths: {
-      localization_optional: true
+      localization_optional: false
     }
     vcf_paths: {
-      localization_optional: true
+      localization_optional: false
     }
   }
 
